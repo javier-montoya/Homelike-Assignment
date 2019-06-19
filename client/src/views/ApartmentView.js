@@ -4,7 +4,8 @@ import {connect} from "react-redux";
 import ApartmentData from "./ApartmentData";
 
 export class ApartmentView extends React.Component {
-  componentWillMount() {
+  // Component will mount is deprecated, used a suitable substitute
+  componentDidMount() {
     const { match: { params } } = this.props;
     const { apartmentId } = params;
     this.props.fetchApartment(apartmentId);
@@ -17,22 +18,18 @@ export class ApartmentView extends React.Component {
     }
     return (
       <div className='container-fl clearfix'>
-        <div className='col-12'>
-          <div className='view-apartment'>
-            <div className="view-apartment-item">
-              <div className="view-apartment-item-content">
-                <ApartmentData 
-                  image = {apartment.images[0]}
-                  price = {apartment.price}
-                  title = {apartment.title}
-                  size = {apartment.size}
-                  amenities = {apartment.amenities}
-                  backgroundSize = 'contain'
-                />
-              </div>
+          <div className="view-apartment-item">
+            <div className="view-apartment-item-content">
+              <ApartmentData 
+                image = {apartment.images[0]}
+                price = {apartment.price}
+                title = {apartment.title}
+                size = {apartment.size}
+                amenities = {apartment.amenities}
+                backgroundSize = 'contain'
+              />
             </div>
           </div>
-        </div>
       </div>
     )
   }

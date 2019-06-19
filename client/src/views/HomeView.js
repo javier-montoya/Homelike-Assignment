@@ -4,7 +4,8 @@ import {fetchApartmentsList} from './../actions/apartmentsListActions';
 import ApartmentTileView from "./ApartmentTileView";
 
 class HomeView extends React.Component {
-  componentWillMount() {
+  // Component will mount is deprecated, used a suitable substitute
+  componentDidMount() {
     this.props.fetchApartmentsList();
   }
 
@@ -16,7 +17,7 @@ class HomeView extends React.Component {
 
     return (
       <div className="container-list container-lg clearfix">
-        <div className="col-12 float-left">
+        <div className="col-12">
           <div className="view-apartment-list">
             {apartmentsList.items.map((item, index) => (
                 <ApartmentTileView key={index} apartment={item} />

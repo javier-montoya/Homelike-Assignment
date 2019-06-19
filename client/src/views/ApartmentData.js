@@ -1,5 +1,6 @@
 import React from 'react';
 import ApartmentAmentityView from "./ApartmentAmentityView";
+import PropTypes from 'prop-types';
 
 // pure component for optimization purposes
 export default class ApartmentData extends React.PureComponent {
@@ -34,4 +35,13 @@ export default class ApartmentData extends React.PureComponent {
         </React.Fragment>
     )
   }
+}
+
+// added proptypes
+ApartmentData.propTypes = {
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  size: PropTypes.number.isRequired,
+  amenities: PropTypes.arrayOf(PropTypes.string).isRequired
 }

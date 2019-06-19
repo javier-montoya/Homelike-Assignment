@@ -10,7 +10,11 @@ body {
   color: rgba(255, 255, 255, 0.75);
   background-color: #24292e;
   min-height: 60px;
-}
+   }
+
+.container-fl {
+  margin-right: auto;
+  margin-left: auto; }
 
 .container-lg {
   max-width: 1012px;
@@ -154,11 +158,6 @@ a {
 
 .view-apartment-item-content {
   width: 300px;
-}
-
-.container-fl {
-  margin-right: auto;
-  margin-left: auto; 
 }
 
 .container-fl .view-apartment-item {
