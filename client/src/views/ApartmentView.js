@@ -17,7 +17,7 @@ export class ApartmentView extends React.Component {
       return <div>Loading...</div>
     }
     return (
-      <div className='container-fl clearfix'>
+      <div className='container-fl'>
           <div className="view-apartment-item">
             <div className="view-apartment-item-content">
               <ApartmentData 

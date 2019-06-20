@@ -7,7 +7,7 @@ import client from './ApolloClient';
 import store from './store';
 import ApartmentView from "./views/ApartmentView";
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
@@ -23,5 +23,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

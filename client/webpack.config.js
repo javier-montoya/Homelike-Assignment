@@ -59,7 +59,6 @@ module.exports = (env, argv) => {
             // This is just so we have the same base structure than the "public" folder and not have to worry much about imports and paths
             // we could have done something more graceful with css loaders but i dont see much of a problem with this approach
             new CopyWebpackPlugin([
-                { from: './public/bootstrap-grid.min.css', to: './bootstrap-grid.min.css' },
                 { from: './public/manifest.json', to: './manifest.json' },
                 { from: './public/favicon.ico', to: './favicon.ico' },
                 { from: './public/css', to: './css' }
