@@ -25,6 +25,13 @@ module.exports = (env, argv) => {
                     loader: "babel-loader" 
                 },
                 {
+                    test: /\.s?css$/,
+                    use: [
+                        'style-loader',
+                        'css-loader'
+                    ]
+                },
+                {
                     // Bundle static html resources
                     test: /\.html$/,
                     use: [

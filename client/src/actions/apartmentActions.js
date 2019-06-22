@@ -6,14 +6,30 @@ export const fetchApartment = (_id) => dispatch => {
   client.query({
     query: gql`
     {
+      locations(active: true) {
+        items {
+          _id
+          title
+        }
+      }
+    }`
+  })
+  .then(response => {
+    console.log("TEST response: ", response);
+  })
+
+  client.query({
+    query: gql`
+    {
       apartment(_id: "${_id}") {
         _id
         owner {
-        _id
+          _id
           email
         } 
         title
         location {
+          _id
           title
         }
         size
@@ -30,10 +46,16 @@ export const fetchApartment = (_id) => dispatch => {
       }
     }`
 })
-.then(apartment => dispatch({
-  type: FETCH_APARTMENT,
-  payload: apartment.data
-}));
+.then(apartment => 
+  {
+    console.log("data: ", apartment.data);
+    return   dispatch({
+      type: FETCH_APARTMENT,
+      payload: apartment.data
+    })
+  }
+
+);
 };
 
 

@@ -30,6 +30,7 @@ export class ApartmentView extends React.Component {
               />
             </div>
           </div>
+          <span className='text-grey listing-details'>You may contact the owner at: <b>{apartment.owner.email}</b></span>
       </div>
     )
   }

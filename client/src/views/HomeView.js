@@ -16,14 +16,12 @@ class HomeView extends React.Component {
     }
 
     return (
-      <div className="container-list container-lg">
-        {/* <div className="col-12"> */}
-          <div className="view-apartment-list">
-            {apartmentsList.items.map((item, index) => (
-                <ApartmentTileView key={index} apartment={item} />
-            ))}
-          </div>
-        {/* </div> */}
+      <div className="standard-top-margin container-lg">
+        <div className="view-apartment-list">
+          {apartmentsList.items.map((item, index) => (
+              <ApartmentTileView key={index} apartment={item} />
+          ))}
+        </div>
       </div>
     )
   }
