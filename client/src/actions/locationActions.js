@@ -15,15 +15,10 @@ export const fetchLocations = () => dispatch => {
     }`
 })
 .then(locations => {
-  console.log("locations: ", locations);
-  console.log("locations.data: ", locations.data);
-
   let formattedLocations = locations.data.locations.items.map(locationItem => {
     return { id: locationItem._id, title: locationItem.title }
   })
-
-  console.log("formatted locations", formattedLocations);
-
+  
   return dispatch({
     type: FETCH_LOCATIONS,
     payload: { locations: formattedLocations }

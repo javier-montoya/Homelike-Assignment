@@ -3,7 +3,6 @@ import gql from "graphql-tag";
 import client from './../ApolloClient'
 
 export const fetchApartmentsByLocation = (locationId) => dispatch => {
-  console.log("fetching by location...");
   client.query({
     query: gql`
     {
@@ -23,19 +22,21 @@ export const fetchApartmentsByLocation = (locationId) => dispatch => {
           price
           amenities
           images
+          details {
+            rooms
+            bedrooms
+            floor
+            bathrooms
+          } 
+          services 
         }
       }
     }`
   })
-  .then(apartments => 
-    {
-      console.log("apartments data in a location ", apartments.data)
-      return   dispatch({
-        type: FETCH_APARTMENTS_LIST,
-        payload: apartments.data
-      })
-    }
-
+  .then(apartments => dispatch({
+      type: FETCH_APARTMENTS_LIST,
+      payload: apartments.data
+    })
   );
 }
 
@@ -62,14 +63,10 @@ export const fetchApartmentsList = () => dispatch => {
         }
       }
     }`
-})
-.then(apartments => {
-  console.log("apartments data", apartments.data)
-  return dispatch({
-    type: FETCH_APARTMENTS_LIST,
-    payload: apartments.data
   })
-});
+  .then(apartments => dispatch({
+    type: FETCH_APARTMENTS_LIST,
+      payload: apartments.data
+    })
+  );
 };
-
-

@@ -16,7 +16,7 @@ class HomeView extends React.Component {
     }
 
     return (
-      <div className="standard-top-margin container-lg">
+      <div className="standard-top-margin center-column col-12 col-md-8">
         <div className="view-apartment-list">
           {apartmentsList.items.map((item, index) => (
               <ApartmentTileView key={index} apartment={item} />

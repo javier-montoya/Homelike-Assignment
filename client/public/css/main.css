@@ -11,12 +11,10 @@ body {
   background-color: #24292e;
 }
 
-.container-lg {
-  max-width: 1012px;
+.center-column {
+  float: none;
   margin-right: auto;
   margin-left: auto;
-  display: flex;
-  align-items: center;
 }
 
 .standard-top-margin {
@@ -33,7 +31,7 @@ a {
 .view-apartment-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; 
+  justify-content: space-evenly; 
 }
 
 .view-apartment-item {
@@ -142,30 +140,31 @@ a {
 }
 
 .text-grey {
-  position: relative;
-  height: 20px;
   color: #999;
   font-size: 14px;
 }
 
 .topbar-link {
   color: white;
-  font-weight: 300;
   padding-left: 35px;
+  text-decoration: none;
 }
 
-.center-vertically { 
-  display: flex;
-  align-items: center;
+a:hover, a:active, a:visited, a:link {
+  text-decoration: none;
 }
 
-.center-horizonyally {
-  display: flex;
-  justify-content: center;
-  margin-left: 0;
-  margin-right: 0;
+.filter-tag {
+  color: gray;
+  font-size: 14px;
+  margin-bottom: 8px;
+  margin-right: 10px;
 }
 
-.full-width {
-  width: 100%
+.filter-text-input {
+  border-radius: .25rem;
+  width: 100%;
+  border: 1px solid #ced4da;
+  margin-bottom: 8px;
+  padding: 6px 12px;
 }

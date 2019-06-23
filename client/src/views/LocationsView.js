@@ -10,9 +10,8 @@ class LocationsView extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      dropdownOptions: []
+      currentOption: ''
     };
   }
 
@@ -21,7 +20,6 @@ class LocationsView extends React.Component {
   }
 
   renderApartments = () => {
-    console.log("i ran... ");
     let { apartmentsList } = this.props;
     if(!apartmentsList) return null;
     return (
@@ -33,8 +31,14 @@ class LocationsView extends React.Component {
     )
   }
 
+  onDropdownChange = (option) => {
+    this.setState ({ currentOption: option.label });
+    this.props.fetchApartmentsByLocation(option.value);
+  }
+
   render() {
-    let { locations, apartmentsList } = this.props;
+    let { locations } = this.props;
+    let { currentOption } = this.state;
 
     if (!Object.keys(locations).length) {
         return <div>Loading...</div>
@@ -45,16 +49,15 @@ class LocationsView extends React.Component {
     })
 
     return (
-      <div className="standard-top-margin container-lg">
-        <div className="full-width center-horizontally">
-          <span>We have apartments in all sorts of venues!</span>
+      <div className="standard-top-margin center-column col-12 col-md-8">
+        <div className="center-horizontally">
+          <h4 className="mb-10">We have apartments in all sorts of venues!</h4>
           <Dropdown 
-          options={options} 
-          onChange={ (option) => {
-            console.log("triggering event", option)
-            this.props.fetchApartmentsByLocation(option.value) 
-          }}
-          placeholder="Select a location" />
+            options={options} 
+            placeholder="Select a location" 
+            value = {currentOption}
+            onChange={ this.onDropdownChange }
+          />
           
           {this.renderApartments()}
 
@@ -64,15 +67,9 @@ class LocationsView extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  // fetchGlobalProgram: programId => dispatch(fetchGlobalProgram(programId))
-  fetchLocations: () => dispatch(fetchLocations()),
-  fetchApartmentsByLocation: (locationId) => dispatch(fetchApartmentsByLocation(locationId))
-});
-
 const mapStateToProps = state => ({
   locations: state.locations.items,
   apartmentsList: state.apartmentsList.apartments.items
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LocationsView)
+export default connect(mapStateToProps, {fetchLocations, fetchApartmentsByLocation})(LocationsView)

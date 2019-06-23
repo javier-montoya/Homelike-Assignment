@@ -6,21 +6,6 @@ export const fetchApartment = (_id) => dispatch => {
   client.query({
     query: gql`
     {
-      locations(active: true) {
-        items {
-          _id
-          title
-        }
-      }
-    }`
-  })
-  .then(response => {
-    console.log("TEST response: ", response);
-  })
-
-  client.query({
-    query: gql`
-    {
       apartment(_id: "${_id}") {
         _id
         owner {
@@ -45,17 +30,10 @@ export const fetchApartment = (_id) => dispatch => {
         services 
       }
     }`
-})
-.then(apartment => 
-  {
-    console.log("data: ", apartment.data);
-    return   dispatch({
+  })
+  .then(apartment => dispatch({
       type: FETCH_APARTMENT,
       payload: apartment.data
     })
-  }
-
-);
+  );
 };
-
-
