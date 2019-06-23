@@ -10,9 +10,9 @@
 ### building for production (optional)
 1. build the client with custom webpack
     - npm run build
-1. install "http-server-spa" (this is what i chose as local server to run the build since it handles single page apps for us already)
+1. install "http-server-spa" (what i chose as local server since it handles single page apps for us already)
     - npm install http-server-spa -g
-1. serve the built project using "http-server-spa" shown in the previous step
+1. serve the built project using "http-server-spa"
     - npm run serve
 
 ### Side notes
