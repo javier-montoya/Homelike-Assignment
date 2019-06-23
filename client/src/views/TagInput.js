@@ -21,7 +21,7 @@ export default class TagInput extends React.PureComponent {
         return (
             <ReactTags 
                 tags={tags}
-                handleAddition={(tag) => { console.log("handling."); handleAddition(tagArrayName, tag) }}
+                handleAddition={(tag) => { handleAddition(tagArrayName, tag) }}
                 handleDelete={(index)=> { handleDelete(tagArrayName, index) }}
                 handleInputBlur={(inputtedText) => { 
                     if (inputtedText !== '') 
@@ -32,6 +32,7 @@ export default class TagInput extends React.PureComponent {
                 placeholder={placeholder}
                 allowDragDrop={false}
                 autofocus={false}
+                allowDeleteFromEmptyInput={false}
                 classNames= {{
                   tag: 'filter-tag',
                   tagInputField: 'filter-text-input'

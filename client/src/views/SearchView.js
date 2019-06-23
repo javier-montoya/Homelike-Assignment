@@ -12,8 +12,6 @@ class SearchView extends React.Component {
     super(props);
     this.state = {
         location: '',
-        
-        // these are the filters
         size: '',
         price: '',
         amenities: [],
@@ -43,10 +41,10 @@ class SearchView extends React.Component {
     let apartmentsToRender = apartmentsList.filter((apartment) => {   
       let detailsArray = this.formatDetails(apartment.details);
       return this.applyFilter(apartment.amenities, amenities) &&
-      this.applyFilter(apartment.services, services) &&
-      this.applyFilter(detailsArray, details) &&
-      (size == '' || apartment.size == size) &&
-      (price == '' || apartment.price == price)
+        this.applyFilter(apartment.services, services) &&
+        this.applyFilter(detailsArray, details) &&
+        (size == '' || apartment.size == size) &&
+        (price == '' || apartment.price == price)
     }
     )
     
@@ -68,14 +66,14 @@ class SearchView extends React.Component {
   } 
 
   // adding a new filter
-  handleAddition = (filterName, tag) => {
+  addFilter = (filterName, tag) => {
     let filters = this.state[filterName];
     filters.push(tag);
     this.setState({ [filterName]: filters });
   }
 
   // remove a filter
-  handleDelete = (filterName, i) => {
+  removeFilter = (filterName, i) => {
     this.setState({
      [filterName]: this.state[filterName].filter((tag, index) => index !== i),
     });
@@ -85,9 +83,8 @@ class SearchView extends React.Component {
   fetchByLocationName = () => {
     let locationName = this.state.location;
     let {locations} = this.props;
-    let location = locations.find((location) => location.title === locationName);
-    if(location)
-      this.props.fetchApartmentsByLocation(location.id);
+    let location = locations.find((location) => location.title === locationName) || {id:''};
+    this.props.fetchApartmentsByLocation(location ? location.id : '');
   }
 
   render() {
@@ -115,44 +112,28 @@ class SearchView extends React.Component {
           </div>
 
           {/* These are the filter inputs */}
-          {/* I made them tag inputs as a preference, this means each filter appears below the input field */}
           <div className="form-group standard-top-margin">
             <label>Amenities</label> 
-            <TagInput 
-              tags={this.state.amenities}
-              tagArrayName = 'amenities'
-              placeholder = 'television, elevator'
-              handleAddition = { this.handleAddition }
-              handleDelete={ this.handleDelete }
-            />
+            <TagInput tags={this.state.amenities} tagArrayName = 'amenities' placeholder = 'television, elevator' handleAddition = { this.addFilter } handleDelete={ this.removeFilter } />
           </div>
+          
           <div className="form-group">
             <label>Details</label> 
-            <TagInput 
-              tags={this.state.details}
-              tagArrayName = 'details'
-              placeholder = '2 bathrooms, 2 rooms'
-              handleAddition = { this.handleAddition }
-              handleDelete={ this.handleDelete }
-            />
+            <TagInput tags={this.state.details} tagArrayName = 'details' placeholder = '2 bathrooms, 2 rooms' handleAddition = { this.addFilter } handleDelete={ this.removeFilter } />
           </div>
 
           <div className="form-group">
             <label>Services</label> 
-            <TagInput 
-              tags={this.state.services}
-              tagArrayName = 'services'
-              placeholder = 'cleaning, laundry'
-              handleAddition = { this.handleAddition }
-              handleDelete={ this.handleDelete }
-            />
+            <TagInput tags={this.state.services} tagArrayName = 'services' placeholder = 'cleaning, laundry' handleAddition = { this.addFilter } handleDelete={ this.removeFilter } />
           </div>
 
-          <div className="form-group"><label>Size</label>
-                <input type="number" className="form-control" onChange={(event) => { this.setState({size: event.target.value}) } } />
-              </div>
-          <div className="form-group"><label>Price</label> 
-                <input type="number" className="form-control" onChange={(event) => { this.setState({price: event.target.value}) } } /> 
+          <div className="form-group">
+            <label>Size</label>
+            <input type="number" className="form-control" onChange={(event) => { this.setState({size: event.target.value}) } } />
+          </div>
+          <div className="form-group">
+            <label>Price</label> 
+            <input type="number" className="form-control" onChange={(event) => { this.setState({price: event.target.value}) } } /> 
           </div>
 
           <div className="form-group">
